@@ -1,6 +1,5 @@
-package com.whitewolf9.rest.webservices.restfulwebservices.daoservice;
+package com.whitewolf9.rest.webservices.restfulwebservices.users;
 
-import com.whitewolf9.rest.webservices.restfulwebservices.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
