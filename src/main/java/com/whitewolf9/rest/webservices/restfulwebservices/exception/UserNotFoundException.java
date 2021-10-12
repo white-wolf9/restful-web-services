@@ -1,4 +1,4 @@
-package com.whitewolf9.rest.webservices.restfulwebservices.users;
+package com.whitewolf9.rest.webservices.restfulwebservices.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
