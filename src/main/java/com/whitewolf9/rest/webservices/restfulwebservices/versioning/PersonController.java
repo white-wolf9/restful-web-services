@@ -30,5 +30,17 @@ public class PersonController {
         return new PersonV2(new Name("Fred", "Allen"));
     }
 
+    //  Third way of versioning API is as per below, using the header.
+
+    @GetMapping(value = "/person/header", headers = "X-API-VERSION=1")
+    public PersonV1 personHeaderV1(){
+        return new PersonV1("Bob Charlie");
+    }
+
+    @GetMapping(value = "/person/header", headers = "X-API-VERSION=2")
+    public PersonV2 personHeaderV2(){
+        return new PersonV2(new Name("Fred", "Allen"));
+    }
+
 
 }
