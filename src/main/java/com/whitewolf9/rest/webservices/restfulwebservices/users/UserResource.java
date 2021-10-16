@@ -2,6 +2,8 @@ package com.whitewolf9.rest.webservices.restfulwebservices.users;
 
 import com.whitewolf9.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -9,6 +11,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 /**
  * Class created to store the API calls associated to the user resource.
@@ -25,12 +30,16 @@ public class UserResource {
     }
 
     @GetMapping(value = "/user/{id}")
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id){
         User user = service.findOne(id);
         if(user==null){
             throw new UserNotFoundException("Id-"+id);
         }
-        return user;
+        EntityModel<User> model = EntityModel.of(user);
+
+        WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        model.add(linkToUsers.withRel("Link to Users"));
+        return model;
     }
 
     @PostMapping("/users")
