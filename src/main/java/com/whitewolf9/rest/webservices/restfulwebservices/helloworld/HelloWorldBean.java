@@ -1,4 +1,4 @@
-package com.whitewolf9.rest.webservices.restfulwebservices.entity;
+package com.whitewolf9.rest.webservices.restfulwebservices.helloworld;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;

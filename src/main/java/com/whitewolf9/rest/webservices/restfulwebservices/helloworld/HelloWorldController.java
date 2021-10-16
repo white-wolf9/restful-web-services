@@ -1,6 +1,5 @@
-package com.whitewolf9.rest.webservices.restfulwebservices.controllers;
+package com.whitewolf9.rest.webservices.restfulwebservices.helloworld;
 
-import com.whitewolf9.rest.webservices.restfulwebservices.entity.HelloWorldBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
