@@ -42,5 +42,17 @@ public class PersonController {
         return new PersonV2(new Name("Fred", "Allen"));
     }
 
+    //  Fourth way of versioning API is as per below, using the produces.
+
+    @GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v1+json")
+    public PersonV1 personProducerV1(){
+        return new PersonV1("Bob Charlie");
+    }
+
+    @GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v2+json")
+    public PersonV2 personProducerV2(){
+        return new PersonV2(new Name("Fred", "Allen"));
+    }
+
 
 }
