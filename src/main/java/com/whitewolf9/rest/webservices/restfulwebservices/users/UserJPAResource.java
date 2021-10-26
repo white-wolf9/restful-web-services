@@ -21,10 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
  */
 @RestController
 public class UserJPAResource {
-
-    @Autowired
-    private UserDaoService service;
-
+    
     @Autowired
     private UserRepository userRepository;
 
@@ -48,7 +45,7 @@ public class UserJPAResource {
 
     @PostMapping("/jpa/users")
     public ResponseEntity<Object> createUser (@Valid @RequestBody User user){
-        User savedUser = service.save(user);
+        User savedUser = userRepository.save(user);
         //  .path is used to append to the current URI which is users, so the new path is users/{id}
         //  .buildAndExpand is used to populate the variable {id} in the path
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
@@ -57,10 +54,7 @@ public class UserJPAResource {
 
     @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id){
-        User user = service.deleteById(id);
-        if(user==null){
-            throw new UserNotFoundException("Id-"+id);
-        }
+        userRepository.deleteById(id);
     }
 
 }
