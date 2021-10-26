@@ -1,11 +1,15 @@
 package com.whitewolf9.rest.webservices.restfulwebservices.users;
 
+import com.whitewolf9.rest.webservices.restfulwebservices.post.Post;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -19,6 +23,9 @@ public class User {
 
     @Past
     private Date birthdate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> postList;
 
     public User(){
 
@@ -53,4 +60,13 @@ public class User {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
 }
